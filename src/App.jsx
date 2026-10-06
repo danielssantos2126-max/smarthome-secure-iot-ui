@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import MenuPrincipal from "./pages/MenuPrincipal";
@@ -11,8 +12,6 @@ import Alertas from "./pages/Alertas";
 function App() {
   const [tela, setTela] = useState("login");
   const [dispositivoSelecionado, setDispositivoSelecionado] = useState(null);
-
-  // Estado do sistema de segurança
   const [segurancaAtiva, setSegurancaAtiva] = useState(true);
 
   return (
@@ -44,33 +43,33 @@ function App() {
         <Monitoramento
           onVoltar={() => setTela("menu")}
           onDetalhes={(dispositivo) => {
-           setDispositivoSelecionado(dispositivo);
-           setTela("detalhes");
-         }}
+            setDispositivoSelecionado(dispositivo);
+            setTela("detalhes");
+          }}
           segurancaAtiva={segurancaAtiva}
           setSegurancaAtiva={setSegurancaAtiva}
         />
       )}
 
       {tela === "historico" && (
-      <Historico
-      onVoltar={() => setTela("menu")}
-      />
-       )}
+        <Historico
+          onVoltar={() => setTela("menu")}
+        />
+      )}
 
-    {tela === "detalhes" && (
-    <DetalhesDispositivo
-    dispositivo={dispositivoSelecionado}
-    onVoltar={() => setTela("monitoramento")}
-    />
-    )} 
+      {tela === "detalhes" && (
+        <DetalhesDispositivo
+          dispositivo={dispositivoSelecionado}
+          onVoltar={() => setTela("monitoramento")}
+        />
+      )}
 
-    {tela === "alertas" && (
-    <Alertas
-    onVoltar={() => setTela("menu")}
-    />
-    )}
-</>
+      {tela === "alertas" && (
+        <Alertas
+          onVoltar={() => setTela("menu")}
+        />
+      )}
+    </>
   );
 }
 
